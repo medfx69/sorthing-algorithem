@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/02 19:54:56 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/02 20:31:16 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,33 @@ void	chan_f_s(int	*list)
 	list[0] = i;
 }
 
+void	push_list1(int	*list, int len)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < len)
+	{
+		j = list[i + 1];
+		list[len] = list[len - 1];
+		len--;
+	}
+}
+
 void	return_to_stack1(int	*list1, int	*list2, int len)
 {
-	
+	int	i;
+
+	while (len > 0)
+	{
+		if (list2[0] > list2[1])
+			chan_f_s(list2);
+		push_list1(list1, len);
+		list1[0] = list2[0];
+		mov_f(list2, len);
+		len--;
+	}
 }
 
 void	ft_moves(int *list1, int	*list2, int deg, int len)
