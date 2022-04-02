@@ -6,11 +6,20 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/01 18:54:53 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:54:56 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	mov_f(int	*list, int len)
+{
+	int	i;
+
+	i = -1;
+	while (++i < len)
+		list[i] = list[i + 1];
+}
 
 void	sent_stack2(int *list1, int	*list2, int len)
 {
@@ -25,7 +34,29 @@ void	sent_stack2(int *list1, int	*list2, int len)
 		len--;
 	}
 	list2[0] = list1[0];
+	mov_f(list1, len);
 	write(1, "pa\n", 3);
+	if (list2[0] < list2[1])
+	{
+		j = list2[0];
+		list2[0] = list2[1];
+		list2[1] = j;
+		write (1, "m\n", 3);
+	}
+}
+
+void	chan_f_s(int	*list)
+{
+	int	i;
+
+	i = list[1];
+	list[1] = list[0];
+	list[0] = i;
+}
+
+void	return_to_stack1(int	*list1, int	*list2, int len)
+{
+	
 }
 
 void	ft_moves(int *list1, int	*list2, int deg, int len)
@@ -33,7 +64,7 @@ void	ft_moves(int *list1, int	*list2, int deg, int len)
 	int	i;
 
 	i = 0;
-	while (list1[i + 1])
+	while (i < len)
 	{
 		while (deg < 1)
 		{
@@ -47,7 +78,9 @@ void	ft_moves(int *list1, int	*list2, int deg, int len)
 			else
 				deg = deg / 10;
 		}
+		i++;
 	}
+	return_to_stack1(list1, list2, i);
 }
 
 int	finde_degree(int *list)
