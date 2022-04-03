@@ -6,37 +6,25 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/02 20:31:16 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/03 14:45:27 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	mov_f(int	*list, int len)
+void	sent_stack2(int *list1, int	*list2, int len, int len_2)
 {
-	int	i;
-
-	i = -1;
-	while (++i < len)
-		list[i] = list[i + 1];
-}
-
-void	sent_stack2(int *list1, int	*list2, int len)
-{
-	int	i;
 	int	j;
 
-	i = 0;
-	while (i < len)
+	while (len_2 > 0)
 	{
-		j = list2[i + 1];
-		list2[len] = list2[len - 1];
-		len--;
+		list2[len_2] = list2[len_2 - 1];
+		len_2--;
 	}
 	list2[0] = list1[0];
 	mov_f(list1, len);
 	write(1, "pa\n", 3);
-	if (list2[0] < list2[1])
+	if (list2[0] > list2[1] && len_2 != 0)
 	{
 		j = list2[0];
 		list2[0] = list2[1];
@@ -45,40 +33,16 @@ void	sent_stack2(int *list1, int	*list2, int len)
 	}
 }
 
-void	chan_f_s(int	*list)
+void	return_to_stack1(int	*list1, int	*list2, int len, int len_2)
 {
-	int	i;
-
-	i = list[1];
-	list[1] = list[0];
-	list[0] = i;
-}
-
-void	push_list1(int	*list, int len)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < len)
-	{
-		j = list[i + 1];
-		list[len] = list[len - 1];
-		len--;
-	}
-}
-
-void	return_to_stack1(int	*list1, int	*list2, int len)
-{
-	int	i;
-
 	while (len > 0)
 	{
-		if (list2[0] > list2[1])
+		if (list2[0] < list2[1])
 			chan_f_s(list2);
 		push_list1(list1, len);
 		list1[0] = list2[0];
-		mov_f(list2, len);
+		mov_f(list2, len_2);
+		len_2++;
 		len--;
 	}
 }
@@ -86,52 +50,44 @@ void	return_to_stack1(int	*list1, int	*list2, int len)
 void	ft_moves(int *list1, int	*list2, int deg, int len)
 {
 	int	i;
+	int j;
 
 	i = 0;
 	while (i < len)
 	{
-		while (deg < 1)
+		j = deg;
+		while (j > 1)
 		{
-			if (list1[i] / deg < list1[i + 1] / deg)
-				sent_stack2(list1, list2, len--);
-			else if (list1[i] / deg > list1[i + 1] / deg)
+			if (list1[0] / j < list1[1] / j)
 			{
+				j = 0;
+				while (j < len)
+				{
+					printf("lis1<%d>%d\n",i,list1[j]);
+					printf("lis2<%d>%d\n",i,list2[j]);
+					j++;
+				}
+				sent_stack2(list1, list2, len--, i++);
+				break ;
+			}
+			else if (list1[0] / j > list1[1] / j)
+			{
+				j = 0;
+				while (j < len)
+				{
+					printf("list1<%d>%d\n",i,list1[j]);
+					printf("lis2<%d>%d\n",i,list2[j]);
+					j++;
+				}
 				chan_f_s(list1);
-				sent_stack2(list1, list2, len--);
+				sent_stack2(list1, list2, len--, i++);
+				break ;
 			}
 			else
-				deg = deg / 10;
+				j = j / 10;
 		}
-		i++;
 	}
-	return_to_stack1(list1, list2, i);
-}
-
-int	finde_degree(int *list)
-{
-	int	i;
-	int	max;
-	int	degree;
-
-	i = 0;
-	max = 0;
-	while (list[i])
-	{
-		if (list[i] > max)
-			max = list[i];
-		i++;
-	}
-	i = 0;
-	while (max > 9)
-	{
-		max / 10;
-		i++;
-	}
-	max = 0;
-	degree = 1;
-	while (max++ < i)
-		degree = degree * 10;
-	return (degree);
+	return_to_stack1(list1, list2, i, len);
 }
 
 void	ft_sort(char **c_n, int	*stack1, int len)
@@ -147,15 +103,23 @@ void	ft_sort(char **c_n, int	*stack1, int len)
 		j++;
 	}
 	stack2 = (int *)malloc(sizeof(int) * len);
-	degree = finde_degree(stack1);
+	degree = finde_degree(stack1, len);
 	ft_moves(stack1, stack2, degree, len);
+	free(stack2);
+	j = 0;
+	// while(j < len)
+	// {
+	// 	if (stack1[j] > stack1[j +1])
+	// 		ft_sort(c_n, stack1, len);
+	// }
+	j = 0;
+	// while (j < len)
+	// 	printf("%d\n",stack1[j++]);
 }
 
 int	main(int ac, char	**av)
 {
-	char	**chr_nums;
 	int		*nums;
-	int		i;
 
 	nums = (int *)malloc(sizeof(int) * (ac - 1));
 	ft_sort(av + 1, nums, ac - 1);
