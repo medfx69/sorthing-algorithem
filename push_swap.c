@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/04 17:10:54 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:26:21 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ void	sent_stack2(int *list1, int	*list2, int len, int len_2)
 
 void	return_to_stack1(int	*list1, int	*list2, int len, int len_2)
 {
-	while (len > 0)
+	while (len_2 > 0)
 	{
 		if (list2[0] < list2[1])
 			chan_f_s(list2);
 		push_list1(list1, len);
 		list1[0] = list2[0];
 		mov_f(list2, len_2);
-		len_2++;
-		len--;
+		len_2--;
+		len++;
 	}
 }
 
@@ -51,7 +51,7 @@ void	ft_moves(int *list1, int	*list2, int deg, int len)
 
 	i = 0;
 	c = len;
-	while (i < c + 1)
+	while (i < c)
 	{
 		j = deg;
 		while (j > 1)
@@ -88,10 +88,9 @@ void	ft_sort(char **c_n, int	*stack1, int len)
 	stack2 = (int *)malloc(sizeof(int) * len);
 	degree = finde_degree(stack1, len);
 	ft_moves(stack1, stack2, degree, --len);
-	//free(stack2);
 	j = 0;
-	 while (j < len)
-	 	printf("%d\n", stack1[j++]);
+	while (j < len)
+		printf("%d\n", stack1[j++]);
 }
 
 int	main(int ac, char	**av)
