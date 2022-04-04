@@ -1,7 +1,6 @@
 NAME=push_swap
 CC = cc
-FLAGS=-Wall -Wextra -Werror
-FLAGS2=-Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
+FLAGS2=-Wall -Wextra -Werror 
 RM=rm -f
 SRC =  push_swap.c utilites.c utilites_2.c
 SRCB =  push_swap.outilites.o utilites_2.o
