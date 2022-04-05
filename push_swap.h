@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:32:11 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/03 13:07:59 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:20:40 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef struct s_list
+{
+	int			content;
+	struct Node	*next;
+}	t_list;
 
 int		ft_atoi(const char	*str);
 char	*ft_strjoin(char const	*s1, char const	*s2);

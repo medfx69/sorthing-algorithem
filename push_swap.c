@@ -6,19 +6,17 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/04 17:26:21 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/05 22:47:03 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sent_stack2(int *list1, int	*list2, int len, int len_2)
+void	sent_stack2(int *list1, int	*list2, int len, int len_2, int j)
 {
-	while (len_2 > 0)
-	{
-		list2[len_2] = list2[len_2 - 1];
-		len_2--;
-	}
+	if (list1[0] / j > list1[1] / j)
+		chan_f_s(list1);
+	push_list1(list2, len_2);
 	list2[0] = list1[0];
 	mov_f(list1, len);
 	write(1, "pa\n", 3);
@@ -56,21 +54,15 @@ void	ft_moves(int *list1, int	*list2, int deg, int len)
 		j = deg;
 		while (j > 1)
 		{
-			if (list1[0] / j < list1[1] / j)
+			if (list1[0] / j != list1[1] / j)
 			{
-				sent_stack2(list1, list2, len--, i++);
-				break ;
-			}
-			else if (list1[0] / j > list1[1] / j)
-			{
-				chan_f_s(list1);
-				sent_stack2(list1, list2, len--, i++);
+				sent_stack2(list1, list2, len--, i++, j);
 				break ;
 			}
 			j = j / 10;
 		}
 	}
-	return_to_stack1(list1, list2, i, len);
+	return_to_stack1(list1, list2, len, i);
 }
 
 void	ft_sort(char **c_n, int	*stack1, int len)
@@ -89,7 +81,7 @@ void	ft_sort(char **c_n, int	*stack1, int len)
 	degree = finde_degree(stack1, len);
 	ft_moves(stack1, stack2, degree, --len);
 	j = 0;
-	while (j < len)
+	while (j <= len)
 		printf("%d\n", stack1[j++]);
 }
 
