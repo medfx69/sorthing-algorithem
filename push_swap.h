@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:32:11 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/05 16:20:40 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:08:25 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int		finde_degree(int *list, int len);
 void	push_list1(int	*list, int len);
 void	chan_f_s(int	*list);
 void	mov_f(int	*list, int len);
+void	ft_bzero(void	*s, size_t n);
 
 #endif

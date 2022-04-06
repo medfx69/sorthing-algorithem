@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:56:16 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/05 13:59:08 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:08:37 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,17 @@ int	finde_degree(int *list, int len)
 	while (max++ < i)
 		degree = degree * 10;
 	return (degree);
+}
+
+void	ft_bzero(void	*s, size_t n)
+{
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	while (n > 0)
+	{
+		*str = '\0';
+		str++;
+		n--;
+	}
 }
