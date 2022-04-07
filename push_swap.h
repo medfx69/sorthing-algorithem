@@ -30,5 +30,6 @@ void	push_list1(int	*list, int len);
 void	chan_f_s(int	*list);
 void	mov_f(int	*list, int len);
 void	ft_bzero(void	*s, size_t n);
+int		check_nums(int	*list, int len);
 
 #endif

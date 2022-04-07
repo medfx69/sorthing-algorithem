@@ -23,7 +23,7 @@ void	sent_stack2(int *list1, int	*list2, int len, int len_2)
 	list2[0] = list1[0];
 	mov_f(list1, len);
 	write(1, "pb\n", 3);
-	if (list2[0] < list2[1])
+	if (list2[0] < list2[1] && len_2 != 0)
 	{
 		chan_f_s(list2);
 		write (1, "sb\n", 3);
@@ -34,7 +34,7 @@ void	return_to_stack1(int	*list1, int	*list2, int len, int len_2)
 {
 	while (len_2 > 0)
 	{
-		if (list2[0] < list2[1])
+		if (list2[0] < list2[1] && len_2 != 1)
 		{
 			chan_f_s(list2);
 			write(1, "sb\n", 3);
@@ -48,25 +48,18 @@ void	return_to_stack1(int	*list1, int	*list2, int len, int len_2)
 	}
 }
 
-void	ft_moves(int *list1, int	*list2, int deg, int len)
+void	ft_moves(int *list1, int	*list2, int len)
 {
 	int	i;
-	int	j;
 	int	c;
 
 	i = 0;
 	c = len;
 	while (i < c - 1)
 	{
-		j = deg;
-		while (j > 1)
+		if (list1[0] != list1[1])
 		{
-			if (list1[0] != list1[1])
-			{
-				sent_stack2(list1, list2, len--, i++);
-				break ;
-			}
-			j = j / 10;
+			sent_stack2(list1, list2, len--, i++);
 		}
 	}
 	return_to_stack1(list1, list2, len, i);
@@ -76,7 +69,6 @@ int	ft_sort(char **c_n, int	*stack1, int len)
 {
 	int	j;
 	int	*stack2;
-	int	degree;
 
 	j = 0;
 	while (j < len)
@@ -90,14 +82,16 @@ int	ft_sort(char **c_n, int	*stack1, int len)
 	if (stack2 == NULL)
 		return (0);
 	ft_bzero(stack2, sizeof(int) * len);
-	degree = finde_degree(stack1, len);
 	j = 0;
 	while (j < len)
 	{
 		if (stack1[j] > stack1[j + 1])
-			ft_moves(stack1, stack2, degree, len);
+			ft_moves(stack1, stack2, len);
 		j++;
 	}
+	j = 0;
+	// while(j < len)
+	// 	printf("%d\n",stack1[j++]);
 	return (*stack1);
 }
 
