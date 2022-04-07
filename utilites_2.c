@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:56:16 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/06 22:21:23 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:28:46 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,6 @@ void	push_list1(int	*list, int len)
 		len--;
 	}
 	list[len] = 0;
-}
-
-int	finde_degree(int *list, int len)
-{
-	int	i;
-	int	max;
-	int	degree;
-
-	i = 0;
-	max = 0;
-	while (i < len)
-	{
-		if (list[i] > max)
-			max = list[i];
-		i++;
-	}
-	i = 0;
-	while (max > 9)
-	{
-		max = max / 10;
-		i++;
-	}
-	max = 0;
-	degree = 1;
-	while (max++ < i)
-		degree = degree * 10;
-	return (degree);
 }
 
 void	ft_bzero(void	*s, size_t n)

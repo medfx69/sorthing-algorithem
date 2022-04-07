@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:32:11 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/06 15:08:25 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:57:02 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct s_list
-{
-	int			content;
-	struct Node	*next;
-}	t_list;
-
 int		ft_atoi(const char	*str);
-char	*ft_strjoin(char const	*s1, char const	*s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		finde_degree(int *list, int len);
 void	push_list1(int	*list, int len);
 void	chan_f_s(int	*list);
 void	mov_f(int	*list, int len);
 void	ft_bzero(void	*s, size_t n);
 int		check_nums(int	*list, int len);
+void	f_b_l(int	*list, int len);
+void	l_b_f(int	*list, int len);
 
 #endif

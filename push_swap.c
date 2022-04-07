@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/06 22:19:55 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:46:23 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	sent_stack2(int *list1, int	*list2, int len, int len_2)
 {
+	if (list1[0] > list1[len - 1] && len > 1)
+	{
+		l_b_f(list1, len - 1);
+		write(1, "ra\n", 3);
+	}
 	if (list1[0] > list1[1])
 	{
 		chan_f_s(list1);
@@ -23,6 +28,11 @@ void	sent_stack2(int *list1, int	*list2, int len, int len_2)
 	list2[0] = list1[0];
 	mov_f(list1, len);
 	write(1, "pb\n", 3);
+	if (list2[0] < list2[len_2] && len_2 > 1)
+	{
+		f_b_l(list2, len_2);
+		write(1, "rrb\n", 4);
+	}
 	if (list2[0] < list2[1] && len_2 != 0)
 	{
 		chan_f_s(list2);
@@ -42,6 +52,11 @@ void	return_to_stack1(int	*list1, int	*list2, int len, int len_2)
 		push_list1(list1, len);
 		list1[0] = list2[0];
 		write(1, "pa\n", 3);
+		if (list1[0] > list1[1] && len != 0)
+		{
+			chan_f_s(list1);
+			write (1, "sa\n", 3);
+		}
 		mov_f(list2, len_2);
 		len++;
 		len_2--;
@@ -90,8 +105,8 @@ int	ft_sort(char **c_n, int	*stack1, int len)
 		j++;
 	}
 	j = 0;
-	// while(j < len)
-	// 	printf("%d\n",stack1[j++]);
+	//  while(j < len)
+	//   	printf("%d\n",stack1[j++]);
 	return (*stack1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:30:31 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/02 15:53:46 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/07 15:01:38 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,66 +40,20 @@ int	ft_atoi(const char	*str)
 		return (num);
 }
 
-static int	ft_arrlen(char const	*arr)
+void	f_b_l(int	*list, int len)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
+	j = list[len];
+	push_list1(list, len);
+	list[0] = j;
 }
 
-char	*ft_strjoin(char const	*s1, char const	*s2)
+void	l_b_f(int	*list, int len)
 {
-	char	*ptr;
-	int		j;
-	int		k;
-	int		i;
+	int	j;
 
-	if (s1 && s2)
-	{
-		k = ft_arrlen(s1);
-		j = ft_arrlen(s2);
-		ptr = malloc(k + j + 1);
-		if (!ptr)
-			return (NULL);
-		i = -1;
-		while (i++ < k)
-				ptr[i] = s1[i];
-		i = 0;
-		while (i < j)
-			ptr[k++] = s2[i++];
-		ptr[k] = '\0';
-		return (ptr);
-	}
-	return (NULL);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*ptr;
-	char	*str;
-	size_t	i;
-	size_t	j;
-
-	str = (char *)s;
-	if (!str)
-		return (NULL);
-	ptr = malloc(len + 1);
-	if (!ptr)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (str[j])
-	{
-		if (j >= start && i < len)
-		{
-				ptr[i] = str[j];
-				i++;
-		}
-		j++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	j = list[0];
+	mov_f(list, len + 1);
+	list[len] = j;
 }
