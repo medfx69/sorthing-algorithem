@@ -6,116 +6,136 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/07 15:46:23 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:10:56 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sent_stack2(int *list1, int	*list2, int len, int len_2)
+void	ft_sort_index(int	*list1, int	*list2, int len, int max_bits)
 {
-	if (list1[0] > list1[len - 1] && len > 1)
+	int	max_num;
+	int	i[2];
+	int	j;
+	int	num;
+
+	max_num = len - 1;
+	while ((max_num >> max_bits) != 0)
+		max_bits++;
+	i[0] = -1;
+	i[1] = 0;
+	while (++i[0] < max_bits)
 	{
-		l_b_f(list1, len - 1);
-		write(1, "ra\n", 3);
+		j = -1;
+		while (++j < len)
+		{
+			num = list1[0];
+			if (((num >> i[0]) & 1) == 1)
+				ra (list1);
+			else
+				pb(list1, list2, len--, i[1]++);
+		}
 	}
-	if (list1[0] > list1[1])
-	{
-		chan_f_s(list1);
-		write(1, "sa\n", 3);
-	}
-	push_list1(list2, len_2);
-	list2[0] = list1[0];
-	mov_f(list1, len);
-	write(1, "pb\n", 3);
-	if (list2[0] < list2[len_2] && len_2 > 1)
-	{
-		f_b_l(list2, len_2);
-		write(1, "rrb\n", 4);
-	}
-	if (list2[0] < list2[1] && len_2 != 0)
-	{
-		chan_f_s(list2);
-		write (1, "sb\n", 3);
-	}
+	while (i[1] > 0)
+		pa (list1, list2, len++, i[1]--);
 }
 
-void	return_to_stack1(int	*list1, int	*list2, int len, int len_2)
-{
-	while (len_2 > 0)
-	{
-		if (list2[0] < list2[1] && len_2 != 1)
-		{
-			chan_f_s(list2);
-			write(1, "sb\n", 3);
-		}
-		push_list1(list1, len);
-		list1[0] = list2[0];
-		write(1, "pa\n", 3);
-		if (list1[0] > list1[1] && len != 0)
-		{
-			chan_f_s(list1);
-			write (1, "sa\n", 3);
-		}
-		mov_f(list2, len_2);
-		len++;
-		len_2--;
-	}
-}
-
-void	ft_moves(int *list1, int	*list2, int len)
+void	ft_moves(int *list1, int	*list2, int	*cp1, int len)
 {
 	int	i;
-	int	c;
+	int	j;
 
 	i = 0;
-	c = len;
-	while (i < c - 1)
+	ft_sort_cpy(cp1, len);
+	while (i < len)
 	{
-		if (list1[0] != list1[1])
+		j = 0;
+		while (j < len)
 		{
-			sent_stack2(list1, list2, len--, i++);
+			if (cp1[i] == list1[j])
+				cp1 [i] = j;
+			j++;
 		}
+		i++;
 	}
-	return_to_stack1(list1, list2, len, i);
+	ft_sort_index(cp1, list2, len, 0);
 }
 
 int	ft_sort(char **c_n, int	*stack1, int len)
 {
 	int	j;
 	int	*stack2;
+	int	*cp1;
 
-	j = 0;
-	while (j < len)
-	{
+	j = -1;
+	while (++j < len)
 		stack1[j] = ft_atoi(c_n[j]);
-		j++;
-	}
-	if (check_nums(stack1, len) < 0)
+	if (check_nums(stack1, len) < 0 || ch_if_d(stack1, len) > 0)
 		return (-1);
 	stack2 = (int *)malloc(sizeof(int) * len);
 	if (stack2 == NULL)
 		return (0);
+	cp1 = (int *)malloc(sizeof(int) * len);
+	if (!cp1)
+		return (0);
 	ft_bzero(stack2, sizeof(int) * len);
-	j = 0;
-	while (j < len)
+	cp1 = ft_cpy(cp1, stack1, len);
+	ft_moves(stack1, stack2, cp1, len);
+	ft_moves(stack1, stack2, cp1, len);
+	ft_sort_cpy(stack1, len);
+	return (*stack1);
+}
+
+int	sort_small_stack(char	**c_n, int	*stack1, int len)
+{
+	int	j;
+	int	*stack2;
+	int	*cp1;
+
+	j = -1;
+	while (++j < len)
+		stack1[j] = ft_atoi(c_n[j]);
+	if (check_nums(stack1, len) < 0 || ch_if_d(stack1, len) > 0)
+		return (-1);
+	stack2 = (int *)malloc(sizeof(int) * len);
+	if (stack2 == NULL)
+		return (0);
+	cp1 = (int *)malloc(sizeof(int) * len);
+	if (!cp1)
+		return (0);
+	ft_bzero(stack2, sizeof(int) * len);
+	j = -1;
+	while (++j < len)
 	{
 		if (stack1[j] > stack1[j + 1])
-			ft_moves(stack1, stack2, len);
-		j++;
+			ft_moves_small(stack1, stack2, len);
 	}
-	j = 0;
-	//  while(j < len)
-	//   	printf("%d\n",stack1[j++]);
-	return (*stack1);
+	return (0);
 }
 
 int	main(int ac, char	**av)
 {
 	int		*nums;
+	int		i;
 
 	nums = (int *)malloc(sizeof(int) * (ac - 1));
 	if (nums == 0)
 		return (0);
-	ft_sort(av + 1, nums, ac - 1);
+	if (ac <= 6)
+	{
+		if (sort_small_stack(av + 1, nums, ac -1) == -1)
+			write(2, "chaeck argements\n", 17);
+		return (0);
+	}
+	i = 0;
+	while (av[++i])
+	{
+		if (ft_chek_alf(av[i]) == -1)
+		{
+			write(2, "chaeck argements\n", 17);
+			return (0);
+		}
+	}
+	if (ft_sort(av + 1, nums, ac - 1) == -1)
+		write(2, "chaeck argements\n", 17);
 }

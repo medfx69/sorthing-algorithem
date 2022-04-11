@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:56:16 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/07 13:28:46 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:34:56 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ void	mov_f(int	*list, int len)
 	list[i] = 0;
 }
 
-void	chan_f_s(int	*list)
-{
-	int	i;
-
-	i = list[1];
-	list[1] = list[0];
-	list[0] = i;
-}
-
 void	push_list1(int	*list, int len)
 {
 	while (len > 0)
@@ -44,15 +35,28 @@ void	push_list1(int	*list, int len)
 	list[len] = 0;
 }
 
-void	ft_bzero(void	*s, size_t n)
+void	ra(int	*list)
 {
-	unsigned char	*str;
+	int	i;
 
-	str = (unsigned char *)s;
-	while (n > 0)
-	{
-		*str = '\0';
-		str++;
-		n--;
-	}
+	i = list[0];
+	list[0] = list[1];
+	list[1] = i;
+	write(1, "ra\n", 3);
+}
+
+void	pb(int	*list1, int	*list2, int len, int len_2)
+{
+	push_list1(list2, len_2);
+	list2[0] = list1[0];
+	mov_f(list1, len);
+	write(1, "pb\n", 3);
+}
+
+void	pa(int	*list1, int	*list2, int len, int len_2)
+{
+	push_list1(list1, len);
+	list1[0] = list2[0];
+	mov_f(list2, len_2);
+	write(1, "pa\n", 3);
 }
