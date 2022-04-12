@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/11 17:10:56 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/04/12 13:10:10 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,22 +119,22 @@ int	main(int ac, char	**av)
 	int		i;
 
 	nums = (int *)malloc(sizeof(int) * (ac - 1));
-	if (nums == 0)
+	if (!nums)
 		return (0);
-	if (ac <= 6)
-	{
-		if (sort_small_stack(av + 1, nums, ac -1) == -1)
-			write(2, "chaeck argements\n", 17);
-		return (0);
-	}
 	i = 0;
-	while (av[++i])
+	while (av[++i] && ac > 2)
 	{
 		if (ft_chek_alf(av[i]) == -1)
 		{
 			write(2, "chaeck argements\n", 17);
 			return (0);
 		}
+	}
+	if (ac <= 6)
+	{
+		if (ac < 2 || sort_small_stack(av + 1, nums, ac -1) == -1)
+			write(2, "chaeck argements\n", 17);
+		return (0);
 	}
 	if (ft_sort(av + 1, nums, ac - 1) == -1)
 		write(2, "chaeck argements\n", 17);
