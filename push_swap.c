@@ -24,10 +24,10 @@ void	ft_sort_index(int	*list1, int	*list2, int len, int max_bits)
 		max_bits++;
 	i[0] = -1;
 	i[1] = 0;
-	while (++i[0] < max_bits)
+	while (++i[0] <= max_bits)
 	{
 		j = -1;
-		while (++j < len)
+		while (++j <= c)
 		{
 			num = list1[0];
 			if (((num >> i[0]) & 1) == 1)
