@@ -12,32 +12,31 @@
 
 #include "push_swap.h"
 
-void	ft_sort_index(int	*list1, int	*list2, int len, int max_bits)
+void	ft_sort_index(int	*list1, int	*list2, int len)
 {
-	int	max_num;
 	int	i[2];
 	int	j;
 	int	num;
+	int	c;
 
-	max_num = len - 1;
-	while ((max_num >> max_bits) != 0)
-		max_bits++;
-	i[0] = -1;
+	i[0] = 0;
 	i[1] = 0;
-	while (++i[0] <= max_bits)
+	c = len;
+	while (ch_if_d(list1, len) == -1)
 	{
 		j = -1;
-		while (++j <= c)
+		while (++j < c)
 		{
 			num = list1[0];
 			if (((num >> i[0]) & 1) == 1)
-				ra (list1);
+				ra (list1, len);
 			else
 				pb(list1, list2, len--, i[1]++);
 		}
+		i[0]++;
+		while (i[1] > 0)
+			pa (list1, list2, len++, i[1]--);
 	}
-	while (i[1] > 0)
-		pa (list1, list2, len++, i[1]--);
 }
 
 void	ft_moves(int *list1, int	*list2, int	*cp1, int len)
@@ -58,7 +57,7 @@ void	ft_moves(int *list1, int	*list2, int	*cp1, int len)
 		}
 		i++;
 	}
-	ft_sort_index(cp1, list2, len, 0);
+	ft_sort_index(cp1, list2, len);
 }
 
 int	ft_sort(char **c_n, int	*stack1, int len)
@@ -80,7 +79,6 @@ int	ft_sort(char **c_n, int	*stack1, int len)
 		return (0);
 	ft_bzero(stack2, sizeof(int) * len);
 	cp1 = ft_cpy(cp1, stack1, len);
-	ft_moves(stack1, stack2, cp1, len);
 	ft_moves(stack1, stack2, cp1, len);
 	ft_sort_cpy(stack1, len);
 	return (*stack1);

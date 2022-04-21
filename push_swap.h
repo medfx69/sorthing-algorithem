@@ -26,7 +26,7 @@ int		*ft_cpy(int	*dest, int	*src, int len);
 void	ft_sort_cpy(int	*cp, int len);
 void	pa(int	*list1, int	*list2, int len, int len_2);
 void	pb(int	*list1, int	*list2, int len, int len_2);
-void	ra(int	*list);
+void	ra(int	*list, int len);
 int		ft_chek_alf(const char	*str);
 void	chan_f_s(int	*list);
 int	ft_moves_small(int *list1, int	*list2, int len);

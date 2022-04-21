@@ -35,13 +35,19 @@ void	push_list1(int	*list, int len)
 	list[len] = 0;
 }
 
-void	ra(int	*list)
+void	ra(int	*list, int len)
 {
-	int	i;
+	int i;
+	int j;
 
-	i = list[0];
-	list[0] = list[1];
-	list[1] = i;
+	j = list[0];
+	i = 0;
+	while (i + 1 < len)
+	{
+		list[i] = list[i +1];
+		i++;
+	}
+	list[len - 1] = j;
 	write(1, "ra\n", 3);
 }
 
