@@ -74,6 +74,7 @@ void	ft_sort_cpy(int	*cp, int len)
 			cp[i + 1] = j;
 			i = 0;
 		}
-		i++;
+		else
+			i++;
 	}
 }

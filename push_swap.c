@@ -45,14 +45,17 @@ void	ft_moves(int *list1, int	*list2, int	*cp1, int len)
 	int	j;
 
 	i = 0;
-	ft_sort_cpy(cp1, len);
+	ft_sort_cpy(list1, len);
+	i = 0;
 	while (i < len)
 	{
 		j = 0;
 		while (j < len)
 		{
 			if (cp1[i] == list1[j])
-				cp1 [i] = j;
+			{
+				cp1[i] = j;
+			}
 			j++;
 		}
 		i++;
@@ -80,7 +83,6 @@ int	ft_sort(char **c_n, int	*stack1, int len)
 	ft_bzero(stack2, sizeof(int) * len);
 	cp1 = ft_cpy(cp1, stack1, len);
 	ft_moves(stack1, stack2, cp1, len);
-	ft_sort_cpy(stack1, len);
 	return (*stack1);
 }
 
