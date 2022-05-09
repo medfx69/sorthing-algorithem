@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/05/09 10:41:01 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/05/09 11:01:31 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_moves(long int *list1, long int	*list2, long int	*cp1, int len)
 
 int	ft_sort(char **c_n, long int	*stack1, int len)
 {
-	int	j;
+	int			j;
 	long int	*stack2;
 	long int	*cp1;
 
@@ -85,7 +85,9 @@ int	ft_sort(char **c_n, long int	*stack1, int len)
 	ft_bzero(stack2, sizeof(long int) * len);
 	cp1 = ft_cpy(cp1, stack1, len);
 	ft_moves(stack1, stack2, cp1, len);
-	return (*stack1);
+	free(stack2);
+	free(cp1);
+	return (1);
 }
 
 int	sort_small_stack(char	**c_n, long int	*stack1, int len)
@@ -107,11 +109,8 @@ int	sort_small_stack(char	**c_n, long int	*stack1, int len)
 		return (0);
 	ft_bzero(stack2, sizeof(long int) * len);
 	j = -1;
-	while (++j < len)
-	{
-		if (stack1[j] > stack1[j + 1])
+	while (ch_if_d(stack1, len) == -1)
 			ft_moves_small(stack1, stack2, len);
-	}
 	return (0);
 }
 
