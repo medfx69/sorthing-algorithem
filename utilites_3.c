@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	check_nums(int	*list, int len)
+int	check_nums(long int	*list, int len)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,7 @@ int	check_nums(int	*list, int len)
 	return (1);
 }
 
-int	ch_if_d(int	*list, int len)
+int	ch_if_d(long int	*list, int len)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ int	ch_if_d(int	*list, int len)
 	return (1);
 }
 
-int	*ft_cpy(int	*dest, int	*src, int len)
+long int	*ft_cpy(long int	*dest, long int	*src, int len)
 {
 	int	i;
 
@@ -59,10 +59,10 @@ int	*ft_cpy(int	*dest, int	*src, int len)
 	return (dest);
 }
 
-void	ft_sort_cpy(int	*cp, int len)
+void	ft_sort_cpy(long int	*cp, int len)
 {
 	int	i;
-	int	j;
+	long int	j;
 
 	i = 0;
 	while (i < len - 1)

@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-void	ft_sort_index(int	*list1, int	*list2, int len)
+void	ft_sort_index(long int	*list1, long int	*list2, int len)
 {
 	int	i[2];
 	int	j;
-	int	num;
+	long int	num;
 	int	c;
 
 	i[0] = 0;
@@ -39,7 +39,7 @@ void	ft_sort_index(int	*list1, int	*list2, int len)
 	}
 }
 
-void	ft_moves(int *list1, int	*list2, int	*cp1, int len)
+void	ft_moves(long int *list1, long int	*list2, long int	*cp1, int len)
 {
 	int	i;
 	int	j;
@@ -63,47 +63,47 @@ void	ft_moves(int *list1, int	*list2, int	*cp1, int len)
 	ft_sort_index(cp1, list2, len);
 }
 
-int	ft_sort(char **c_n, int	*stack1, int len)
+int	ft_sort(char **c_n, long int	*stack1, int len)
 {
 	int	j;
-	int	*stack2;
-	int	*cp1;
+	long int	*stack2;
+	long int	*cp1;
 
 	j = -1;
 	while (++j < len)
 		stack1[j] = ft_atoi(c_n[j]);
 	if (check_nums(stack1, len) < 0 || ch_if_d(stack1, len) > 0)
 		return (-1);
-	stack2 = (int *)malloc(sizeof(int) * len);
+	stack2 = (long int *)malloc(sizeof(long int) * len);
 	if (stack2 == NULL)
 		return (0);
-	cp1 = (int *)malloc(sizeof(int) * len);
+	cp1 = (long int *)malloc(sizeof(long int) * len);
 	if (!cp1)
 		return (0);
-	ft_bzero(stack2, sizeof(int) * len);
+	ft_bzero(stack2, sizeof(long int) * len);
 	cp1 = ft_cpy(cp1, stack1, len);
 	ft_moves(stack1, stack2, cp1, len);
 	return (*stack1);
 }
 
-int	sort_small_stack(char	**c_n, int	*stack1, int len)
+int	sort_small_stack(char	**c_n, long int	*stack1, int len)
 {
 	int	j;
-	int	*stack2;
-	int	*cp1;
+	long int	*stack2;
+	long int	*cp1;
 
 	j = -1;
 	while (++j < len)
 		stack1[j] = ft_atoi(c_n[j]);
 	if (check_nums(stack1, len) < 0 || ch_if_d(stack1, len) > 0)
 		return (-1);
-	stack2 = (int *)malloc(sizeof(int) * len);
+	stack2 = (long int *)malloc(sizeof(long int) * len);
 	if (stack2 == NULL)
 		return (0);
-	cp1 = (int *)malloc(sizeof(int) * len);
+	cp1 = (long int *)malloc(sizeof(long int) * len);
 	if (!cp1)
 		return (0);
-	ft_bzero(stack2, sizeof(int) * len);
+	ft_bzero(stack2, sizeof(long int) * len);
 	j = -1;
 	while (++j < len)
 	{
@@ -113,14 +113,40 @@ int	sort_small_stack(char	**c_n, int	*stack1, int len)
 	return (0);
 }
 
-int	main(int ac, char	**av)
+int	read_and_spl(char *s, long int	*nums)
 {
-	int		*nums;
+	char	**str;
 	int		i;
 
-	nums = (int *)malloc(sizeof(int) * (ac - 1));
+	str = ft_split(s, ' ');
+	i = 0;
+	while (str[i])
+		i++;
+	if (i <= 1 )
+		return (0);
+	else if (i <= 6)
+	{
+		if (sort_small_stack(str, nums, i) == -1)
+			return (0);
+	}
+	else if (ft_sort(str, nums, i) == -1)
+		return (0);
+	return (0);
+}
+
+int	main(int ac, char	**av)
+{
+	long int		*nums;
+	int		i;
+
+	nums = (long int *)malloc(sizeof(long int) * (ac - 1));
 	if (!nums)
 		return (0);
+	if (ac == 2)
+	{
+		read_and_spl(av[1], nums);
+		return (0);
+	}
 	i = 0;
 	while (av[++i] && ac > 2)
 	{
@@ -132,7 +158,7 @@ int	main(int ac, char	**av)
 	}
 	if (ac <= 6)
 	{
-		if (ac < 2 || sort_small_stack(av + 1, nums, ac -1) == -1)
+		if (sort_small_stack(av + 1, nums, ac -1) == -1)
 			write(2, "chaeck argements\n", 17);
 		return (0);
 	}

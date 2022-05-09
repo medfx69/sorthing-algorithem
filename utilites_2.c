@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	mov_f(int	*list, int len)
+void	mov_f(long int	*list, int len)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ void	mov_f(int	*list, int len)
 	list[i] = 0;
 }
 
-void	push_list1(int	*list, int len)
+void	push_list1(long int	*list, int len)
 {
 	while (len > 0)
 	{
@@ -35,10 +35,10 @@ void	push_list1(int	*list, int len)
 	list[len] = 0;
 }
 
-void	ra(int	*list, int len)
+void	ra(long int	*list, int len)
 {
 	int i;
-	int j;
+	long int j;
 
 	j = list[0];
 	i = 0;
@@ -51,7 +51,7 @@ void	ra(int	*list, int len)
 	write(1, "ra\n", 3);
 }
 
-void	pb(int	*list1, int	*list2, int len, int len_2)
+void	pb(long int	*list1, long int	*list2, int len, int len_2)
 {
 	push_list1(list2, len_2);
 	list2[0] = list1[0];
@@ -59,7 +59,7 @@ void	pb(int	*list1, int	*list2, int len, int len_2)
 	write(1, "pb\n", 3);
 }
 
-void	pa(int	*list1, int	*list2, int len, int len_2)
+void	pa(long int	*list1, long int	*list2, int len, int len_2)
 {
 	push_list1(list1, len);
 	list1[0] = list2[0];

@@ -12,25 +12,25 @@
 
 #include "push_swap.h"
 
-void	f_b_l(int	*list, int len)
+void	f_b_l(long int	*list, int len)
 {
-	int	j;
+	long int	j;
 
 	j = list[len];
 	push_list1(list, len);
 	list[0] = j;
 }
 
-void	l_b_f(int	*list, int len)
+void	l_b_f(long int	*list, int len)
 {
-	int	j;
+	long int	j;
 
 	j = list[0];
 	mov_f(list, len + 1);
 	list[len] = j;
 }
 
-void	sent_stack2_part1(int *list1, int len)
+void	sent_stack2_part1(long int *list1, int len)
 {
 	if (list1[0] > list1[len - 1] && len > 1)
 	{
@@ -44,7 +44,7 @@ void	sent_stack2_part1(int *list1, int len)
 	}
 }
 
-int	sent_stack2_part2(int *list1, int	*list2, int len, int len_2)
+int	sent_stack2_part2(long int *list1, long int	*list2, int len, int len_2)
 {
 	push_list1(list2, len_2);
 	list2[0] = list1[0];
@@ -63,7 +63,7 @@ int	sent_stack2_part2(int *list1, int	*list2, int len, int len_2)
 	return (1);
 }
 
-void	return_to_stack1(int	*list1, int	*list2, int len, int len_2)
+void	return_to_stack1(long int	*list1, long int	*list2, int len, int len_2)
 {
 	while (len_2 > 0)
 	{
@@ -86,7 +86,7 @@ void	return_to_stack1(int	*list1, int	*list2, int len, int len_2)
 	}
 }
 
-int	ft_moves_small(int *list1, int	*list2, int len)
+int	ft_moves_small(long int *list1, long int	*list2, int len)
 {
 	int	i;
 	int	c;

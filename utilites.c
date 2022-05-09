@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-int	ft_atoi(const char	*str)
+long int	ft_atoi(const char	*str)
 {
-	int	i;
-	int	countmi;
-	int	num;
+	long int	i;
+	long int	countmi;
+	long int	num;
 
 	i = 0;
 	countmi = 0;
@@ -42,9 +42,9 @@ int	ft_atoi(const char	*str)
 
 int	ft_chek_alf(const char	*str)
 {
-	int	i;
-	int	countmi;
-	int	num;
+	long int	i;
+	long int	countmi;
+	long int	num;
 
 	i = 0;
 	countmi = 0;
@@ -68,7 +68,7 @@ int	ft_chek_alf(const char	*str)
 		return (1);
 }
 
-void	ft_bzero(void	*s, size_t n)
+void	ft_bzero(void	*s, long int n)
 {
 	unsigned char	*str;
 
@@ -81,9 +81,9 @@ void	ft_bzero(void	*s, size_t n)
 	}
 }
 
-void	chan_f_s(int	*list)
+void	chan_f_s(long int	*list)
 {
-	int	i;
+	long int	i;
 
 	i = list[1];
 	list[1] = list[0];
