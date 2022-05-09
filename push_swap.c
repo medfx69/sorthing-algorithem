@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/12 13:10:10 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/05/09 10:41:01 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ void	ft_moves(long int *list1, long int	*list2, long int	*cp1, int len)
 			if (cp1[i] == list1[j])
 			{
 				cp1[i] = j;
+				break ;
 			}
 			j++;
 		}
 		i++;
 	}
+	j = 0;
 	ft_sort_index(cp1, list2, len);
 }
 
