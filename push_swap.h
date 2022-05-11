@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:32:11 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/05/11 16:23:59 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:30:49 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			ft_chek_alf(const char	*str);
 void		chan_f_s(long int	*list);
 int			ft_moves_small(long int *list1, long int	*list2, int len);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
-void			read_and_spl(char *s, long int	*nums);
+void		read_and_spl(char *s, long int	*nums);
 void		ret_to_stack1(long int	*list1,
 				long int	*list2, int len, int len_2);
 int			sent_stack2_part2(long int *list1, long int	*list2,
