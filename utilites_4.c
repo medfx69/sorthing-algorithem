@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:00:57 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/05/09 07:58:16 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:54:38 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	sent_stack2_part2(long int *list1, long int	*list2, int len, int len_2)
 	return (1);
 }
 
-void	return_to_stack1(long int	*list1, long int	*list2, int len, int len_2)
+void	ret_to_stack1(long int	*list1, long int	*list2, int len, int len_2)
 {
 	while (len_2 > 0)
 	{
@@ -84,27 +84,4 @@ void	return_to_stack1(long int	*list1, long int	*list2, int len, int len_2)
 		len++;
 		len_2--;
 	}
-}
-
-int	ft_moves_small(long int *list1, long int	*list2, int len)
-{
-	int	i;
-	int	c;
-
-	i = 0;
-	c = len;
-	while (i < c - 1)
-	{
-		if (list1[0] != list1[1])
-		{
-			sent_stack2_part1(list1, len);
-			if (ch_if_d(list1, len) == 1)
-				break ;
-			else
-				sent_stack2_part2(list1, list2, len--, i++);
-		}
-	}
-	if (i > 0)
-		return_to_stack1(list1, list2, len, i);
-	return (0);
 }

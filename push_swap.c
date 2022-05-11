@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:09:23 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/05/09 11:01:31 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:19:55 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_sort_index(long int	*list1, long int	*list2, int len)
 {
-	int	i[2];
-	int	j;
+	int			i[2];
+	int			j;
 	long int	num;
-	int	c;
+	int			c;
 
 	i[0] = 0;
 	i[1] = 0;
@@ -77,7 +77,7 @@ int	ft_sort(char **c_n, long int	*stack1, int len)
 	if (check_nums(stack1, len) < 0 || ch_if_d(stack1, len) > 0)
 		return (-1);
 	stack2 = (long int *)malloc(sizeof(long int) * len);
-	if (stack2 == NULL)
+	if (!stack2)
 		return (0);
 	cp1 = (long int *)malloc(sizeof(long int) * len);
 	if (!cp1)
@@ -92,7 +92,7 @@ int	ft_sort(char **c_n, long int	*stack1, int len)
 
 int	sort_small_stack(char	**c_n, long int	*stack1, int len)
 {
-	int	j;
+	int			j;
 	long int	*stack2;
 	long int	*cp1;
 
@@ -102,7 +102,7 @@ int	sort_small_stack(char	**c_n, long int	*stack1, int len)
 	if (check_nums(stack1, len) < 0 || ch_if_d(stack1, len) > 0)
 		return (-1);
 	stack2 = (long int *)malloc(sizeof(long int) * len);
-	if (stack2 == NULL)
+	if (!stack2)
 		return (0);
 	cp1 = (long int *)malloc(sizeof(long int) * len);
 	if (!cp1)
@@ -110,59 +110,36 @@ int	sort_small_stack(char	**c_n, long int	*stack1, int len)
 	ft_bzero(stack2, sizeof(long int) * len);
 	j = -1;
 	while (ch_if_d(stack1, len) == -1)
-			ft_moves_small(stack1, stack2, len);
-	return (0);
-}
-
-int	read_and_spl(char *s, long int	*nums)
-{
-	char	**str;
-	int		i;
-
-	str = ft_split(s, ' ');
-	i = 0;
-	while (str[i])
-		i++;
-	if (i <= 1 )
-		return (0);
-	else if (i <= 6)
-	{
-		if (sort_small_stack(str, nums, i) == -1)
-			return (0);
-	}
-	else if (ft_sort(str, nums, i) == -1)
-		return (0);
+		ft_moves_small(stack1, stack2, len);
+	free(cp1);
+	free(stack2);
 	return (0);
 }
 
 int	main(int ac, char	**av)
 {
 	long int		*nums;
-	int		i;
+	int				i;
 
 	nums = (long int *)malloc(sizeof(long int) * (ac - 1));
 	if (!nums)
 		return (0);
-	if (ac == 2)
-	{
-		read_and_spl(av[1], nums);
-		return (0);
-	}
 	i = 0;
-	while (av[++i] && ac > 2)
+	while (av[++i])
 	{
-		if (ft_chek_alf(av[i]) == -1)
+		if ((ft_chek_alf(av[i]) == -1 || ac == 1) && ac > 2)
 		{
-			write(2, "chaeck argements\n", 17);
+			write(2, "check argements\n", 17);
 			return (0);
 		}
 	}
-	if (ac <= 6)
+	if (ac == 2)
+		read_and_spl(av[1], nums);
+	else if (ac <= 6)
 	{
 		if (sort_small_stack(av + 1, nums, ac -1) == -1)
-			write(2, "chaeck argements\n", 17);
-		return (0);
+			write(2, "check argements\n", 17);
 	}
-	if (ft_sort(av + 1, nums, ac - 1) == -1)
-		write(2, "chaeck argements\n", 17);
+	else if (ft_sort(av + 1, nums, ac - 1) == -1)
+		write(2, "check argements\n", 17);
 }

@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:56:16 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/05/09 10:41:28 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/05/10 11:04:19 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	push_list1(long int	*list, int len)
 
 void	ra(long int	*list, int len)
 {
-	int i;
-	long int j;
+	int			i;
+	long int	j;
 
 	j = list[0];
 	i = 0;

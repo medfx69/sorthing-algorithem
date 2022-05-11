@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 22:20:31 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/11 16:36:20 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/05/10 15:48:33 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	check_nums(long int	*list, int len)
 		j = 0;
 		while (j < len)
 		{
-			if (list[i] == list[j] && j != i)
+			if ((list[i] == list[j] && j != i)
+				|| list[j] < -2147483648 || list[j] > 2147483647)
 				return (-1);
 			j++;
 		}
@@ -61,7 +62,7 @@ long int	*ft_cpy(long int	*dest, long int	*src, int len)
 
 void	ft_sort_cpy(long int	*cp, int len)
 {
-	int	i;
+	int			i;
 	long int	j;
 
 	i = 0;

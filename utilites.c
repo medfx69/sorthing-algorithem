@@ -6,7 +6,7 @@
 /*   By: mait-aad <mait-aad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:30:31 by mait-aad          #+#    #+#             */
-/*   Updated: 2022/04/11 17:04:12 by mait-aad         ###   ########.fr       */
+/*   Updated: 2022/05/10 11:16:32 by mait-aad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ int	ft_chek_alf(const char	*str)
 	i = 0;
 	countmi = 0;
 	num = 0;
+	if (!*str)
+		return (-1);
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == '-')
+		if (str[i++] == '-')
 			countmi++;
-		i++;
 	}
 	while (str[i] <= '9' && str[i] >= '0')
 	{
